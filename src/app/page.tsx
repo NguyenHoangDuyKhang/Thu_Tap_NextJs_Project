@@ -1,14 +1,15 @@
-'use client';
+"use client";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+const MyComponent = () => {
+    const router = useRouter();
 
-export default function HomePage() {
-  const router = useRouter();
+    useEffect(() => {
+        router.push("/login");
+    }, [router]);
 
-  useEffect(() => {
-    router.push('/auth');
-  }, [router]);
+    return null;
+};
 
-  return null;
-}
+export default MyComponent;
