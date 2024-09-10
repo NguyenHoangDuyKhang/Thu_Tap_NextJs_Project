@@ -1,76 +1,107 @@
-'use client'
-import { Box, Typography, Container, Link, IconButton } from "@mui/material";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import InstagramIcon from "@mui/icons-material/Instagram";
+"use client";
+import { Text, Container, ActionIcon, Group, rem } from "@mantine/core";
+import {
+    IconBrandTwitter,
+    IconBrandYoutube,
+    IconBrandInstagram,
+} from "@tabler/icons-react";
+import { MantineLogo } from "@mantinex/mantine-logo";
+import classes from "./Footer.module.css";
 
-function Footer() {
-  return (
-    <>
-      <Box
-        component="footer"
-        sx={{
-          background: "linear-gradient(90deg, #1976d2 0%, #42a5f5 100%)",
-          color: "#fff",
-          padding: "40px 0",
-          textAlign: "center",
-          position: "relative",
-          bottom: "0",
-          width: "100%",
-          boxShadow: "0 -5px 15px rgba(0, 0, 0, 0.3)",
-        }}
-      >
-        <Container maxWidth="lg">
-          {/* Footer Title */}
-          <Typography variant="h6" gutterBottom>
-            MyApp
-          </Typography>
+export default function FooterLinks() {
+    const data = [
+        {
+            title: "About",
+            links: [
+                { label: "Features", link: "#" },
+                { label: "Pricing", link: "#" },
+                { label: "Support", link: "#" },
+                { label: "Forums", link: "#" },
+            ],
+        },
+        {
+            title: "Project",
+            links: [
+                { label: "Contribute", link: "#" },
+                { label: "Media assets", link: "#" },
+                { label: "Changelog", link: "#" },
+                { label: "Releases", link: "#" },
+            ],
+        },
+        {
+            title: "Community",
+            links: [
+                { label: "Join Discord", link: "#" },
+                { label: "Follow on Twitter", link: "#" },
+                { label: "Email newsletter", link: "#" },
+                { label: "GitHub discussions", link: "#" },
+            ],
+        },
+    ];
+    const groups = data.map((group) => {
+        const links = group.links.map((link, index) => (
+            <Text<"a">
+                key={index}
+                className={classes.link}
+                component="a"
+                href={link.link}
+                onClick={(event) => event.preventDefault()}
+            >
+                {link.label}
+            </Text>
+        ));
 
-          {/* Social Media Links */}
-          <Box sx={{ display: "flex", justifyContent: "center", mb: 3 }}>
-            <IconButton
-              component={Link}
-              href="https://facebook.com"
-              color="inherit"
-              sx={{ mx: 1, "&:hover": { color: "#1877F2" } }}
-            >
-              <FacebookIcon />
-            </IconButton>
-            <IconButton
-              component={Link}
-              href="https://twitter.com"
-              color="inherit"
-              sx={{ mx: 1, "&:hover": { color: "#1DA1F2" } }}
-            >
-              <TwitterIcon />
-            </IconButton>
-            <IconButton
-              component={Link}
-              href="https://linkedin.com"
-              color="inherit"
-              sx={{ mx: 1, "&:hover": { color: "#0077B5" } }}
-            >
-              <LinkedInIcon />
-            </IconButton>
-            <IconButton
-              component={Link}
-              href="https://instagram.com"
-              color="inherit"
-              sx={{ mx: 1, "&:hover": { color: "#C13584" } }}
-            >
-              <InstagramIcon />
-            </IconButton>
-          </Box>
+        return (
+            <div className={classes.wrapper} key={group.title}>
+                <Text className={classes.title}>{group.title}</Text>
+                {links}
+            </div>
+        );
+    });
 
-          {/* Copyright */}
-          <Typography variant="body2" sx={{ fontSize: "14px", opacity: 0.7 }}>
-            © 2024 MyApp. All rights reserved.
-          </Typography>
-        </Container>
-      </Box>
-    </>
-  );
+    return (
+        <footer className={classes.footer}>
+            <Container className={classes.inner}>
+                <div className={classes.logo}>
+                    <MantineLogo size={30} />
+                    <Text size="xs" c="dimmed" className={classes.description}>
+                        Build fully functional accessible web applications
+                        faster than ever
+                    </Text>
+                </div>
+                <div className={classes.groups}>{groups}</div>
+            </Container>
+            <Container className={classes.afterFooter}>
+                <Text c="dimmed" size="sm">
+                    © 2020 mantine.dev. All rights reserved.
+                </Text>
+
+                <Group
+                    gap={0}
+                    className={classes.social}
+                    justify="flex-end"
+                    wrap="nowrap"
+                >
+                    <ActionIcon size="lg" color="gray" variant="subtle">
+                        <IconBrandTwitter
+                            style={{ width: rem(18), height: rem(18) }}
+                            stroke={1.5}
+                        />
+                    </ActionIcon>
+                    <ActionIcon size="lg" color="gray" variant="subtle">
+                        <IconBrandYoutube
+                            style={{ width: rem(18), height: rem(18) }}
+                            stroke={1.5}
+                        />
+                    </ActionIcon>
+                    <ActionIcon size="lg" color="gray" variant="subtle">
+                        <IconBrandInstagram
+                            style={{ width: rem(18), height: rem(18) }}
+                            stroke={1.5}
+                        />
+                    </ActionIcon>
+                </Group>
+            </Container>
+        </footer>
+    );
 }
-
-export default Footer;

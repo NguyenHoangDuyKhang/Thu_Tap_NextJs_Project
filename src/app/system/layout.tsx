@@ -1,14 +1,22 @@
-import Nav from "@/component/header/header";
-import Footer from "@/component/footer/footer";
+import { Container } from "@mantine/core";
+import dynamic from "next/dynamic";
 
+const FooterLinks = dynamic(() => import("@/component/footer/footer"), {
+    ssr: false,
+});
+const HeaderTabs = dynamic(() => import("@/component/header/header"), {
+    ssr: false,
+});
 function SystemLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <>
-      <Nav/>
-      <main>{children}</main>
-     <Footer/>
-    </>
-  );
+    return (
+        <>
+            <HeaderTabs />
+            <Container px={0} size="60rem">
+                {children}
+            </Container>
+            <FooterLinks />
+        </>
+    );
 }
 
 export default SystemLayout;
