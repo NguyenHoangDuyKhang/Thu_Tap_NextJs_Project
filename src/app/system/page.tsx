@@ -9,7 +9,7 @@ export default function SystemPage() {
   useEffect(() => {
     const user = localStorage.getItem('user');
     if (!user) {
-      router.push('/auth'); // Nếu chưa đăng nhập, chuyển hướng về auth
+      router.push('/client'); // Nếu chưa đăng nhập, chuyển hướng về auth
     }
   }, [router]);
 
