@@ -1,7 +1,7 @@
 import { Loader } from "@mantine/core";
 
-function Spinner({ size = "lg", color = "blue", variant = "dots" }) {
-  return <Loader size={size} color={color} variant={variant} />;
+function Spinner({ size = "lg" }) {
+  return <Loader size={size} />;
 }
 
 export default Spinner;

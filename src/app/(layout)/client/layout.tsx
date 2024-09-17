@@ -1,5 +1,11 @@
+
 import { Container } from "@mantine/core";
 import dynamic from "next/dynamic";
+import Nav from "@/component/header/header";
+import Footer from "@/component/footer/footer";
+import { MantineProvider } from "@mantine/core";
+import '@mantine/core/styles.css'; 
+
 
 const FooterLinks = dynamic(() => import("@/component/footer/footer"), {
     ssr: false,

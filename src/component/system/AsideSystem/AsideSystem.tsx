@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState } from "react";
 import { Text, Button, Flex, Stack, Popover, NavLink } from "@mantine/core";
 import { IconHome, IconSettings, IconUser } from "@tabler/icons-react";
@@ -49,13 +47,13 @@ export function AsideSystem() {
       style={{
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center", // Căn giữa theo chiều dọc
+        justifyContent: "center",
         height: "100vh",
         backgroundColor: "#f8f9fa",
-        position: "absolute",
+        position: "fixed",
         right: 0,
-        top: 0, // Đặt lại top về 0 để căn chỉnh
-        width: "50px", // Đặt chiều rộng cho aside
+        top: 0,
+        width: "50px",
       }}
     >
       <Stack spacing="xs">
@@ -78,7 +76,7 @@ export function AsideSystem() {
                 style={{ cursor: "pointer" }}
               />
             </Popover.Target>
-            <Popover.Dropdown style={{ height: "100%" }}>
+            <Popover.Dropdown style={{ height: "auto" }}>
               <Stack spacing="xs" mt="sm" __size="lg">
                 {item.subMenu.map((sub) => (
                   <Button
