@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { MantineLogo } from "@mantinex/mantine-logo";
 import { Popover, Button, Text, NavLink, Stack } from "@mantine/core";
-import { IconHome, IconSettings, IconUser } from "@tabler/icons-react";
+import { IconHome, IconSettings, IconUser, IconTools, IconAdjustmentsAlt ,IconApiApp , IconNotes  } from "@tabler/icons-react";
 
 export function NavbarSystem() {
   const router = useRouter();
@@ -17,30 +17,30 @@ export function NavbarSystem() {
       label: "Home",
       icon: IconHome,
       subMenu: [
-        { id: "profile-1", label: "Home", router: "/system" },
-        { id: "profile-2", label: "Edit Profile", router: "/system" },
+        { id: "1", label: "Home", router: "/system" },
       ],
     },
     {
       id: 2,
+      label: "Handle",
+      icon: IconTools,
+      subMenu: [
+        { id: "1", label: "Category", router: "/system/category", icon: IconAdjustmentsAlt},
+        { id: "2", label: "Software", router: "/system/software",  icon: IconApiApp},
+        { id: "3", label: "Quote", router: "/system/quote",  icon: IconNotes  },
+
+      ],
+    },
+    {
+      id: 3,
       label: "Settings",
       icon: IconSettings,
       router: "/system/products",
       subMenu: [
-        { id: "profile-1", label: "View Profile", router: "/system/products"  },
-        { id: "profile-2", label: "Edit Profile", router: "/system/products"  },
+        { id: "profile-1", label: "View Profile", router: "/system/products"},
+        { id: "profile-2", label: "Edit Profile", router: "/system/products"},
       ],
     },
-    // {
-    //   id: 3,
-    //   label: "Profile",
-    //   icon: IconUser,
-    //   router: "/profile",
-    //   subMenu: [
-    //     { id: "profile-1", label: "View Profile" },
-    //     { id: "profile-2", label: "Edit Profile" },
-    //   ],
-    // },
   ];
 
   const handleClick = (id: number) => {
@@ -79,10 +79,12 @@ export function NavbarSystem() {
                   style={{ cursor: "pointer" }}
                 />
               </Popover.Target>
-              <Popover.Dropdown style={{ height: "100%" }}>
-                <Stack spacing="xs" mt="sm" __size="lg">
+              <Popover.Dropdown style={{ height: "auto" }}>
+                <Stack  mt="sm" __size="lg">
                   {item.subMenu.map((sub) => (
                     <Button
+                  leftSection={<sub.icon size="1rem" stroke={1.5} />}
+
                       key={sub.id}
                       variant="light"
                       fullWidth

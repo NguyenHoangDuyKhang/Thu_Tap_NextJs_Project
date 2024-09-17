@@ -1,5 +1,5 @@
-import Nav from "../../component/systemComponent/header/header";
-import Footer from "../../component/systemComponent/footer/footer";
+import Nav from "@/component/header/header";
+import Footer from "@/component/footer/footer";
 import { MantineProvider } from "@mantine/core";
 import '@mantine/core/styles.css'; 
 

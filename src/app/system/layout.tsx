@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { NavbarSystem } from "@/component/system/NavSystem/NavSystem";
 import { AsideSystem } from "@/component/system/AsideSystem/AsideSystem";
 import Spinner from "@/component/spinner/spinner";
-
+import { Notifications } from '@mantine/notifications';
+import '@mantine/notifications/styles.css';
 function SystemLayout({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
 
@@ -18,6 +19,7 @@ function SystemLayout({ children }: { children: React.ReactNode }) {
   return (
     <div style={{ display: "flex", minHeight: "100vh", position: "relative" }}>
       <NavbarSystem />
+      <Notifications />
       <Container
         size="lg"
         style={{
@@ -49,13 +51,19 @@ function SystemLayout({ children }: { children: React.ReactNode }) {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                zIndex: 1000
+                zIndex: 1000,
               }}
             >
               <Spinner />
             </Box>
           )}
-          <div style={{ visibility: loading ? "hidden" : "visible", width: "100%", height: "100%" }}>
+          <div
+            style={{
+              visibility: loading ? "hidden" : "visible",
+              width: "100%",
+              height: "100%",
+            }}
+          >
             {children}
           </div>
         </Box>

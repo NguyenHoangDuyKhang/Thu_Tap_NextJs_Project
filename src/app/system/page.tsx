@@ -6,20 +6,30 @@ import { AppShell, Text, Box, Grid, Card, Table, Flex } from "@mantine/core";
 import Charts from "./chartDas";
 import Tables from "./table";
 import DateNow from "./date";
+import Breadcrumbst from "@/component/Breadcrumbs/Breadcrumbst";
+
 export default function SystemPage() {
   const router = useRouter();
 
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (!user) {
-      router.push("/client"); // Nếu chưa đăng nhập, chuyển hướng về auth
-    }
-  }, [router]);
+  const arr = [
+    { title: "Trang chủ", href: "/system" },
+    { title: "Dasboard", href: "/system" },
+  ];
+
+  // useEffect(() => {
+  //   const user = localStorage.getItem("user");
+  //   if (!user) {
+  //     router.push("/client"); // Nếu chưa đăng nhập, chuyển hướng về auth
+  //   }
+  // }, [router]);
 
   return (
     <>
       <AppShell>
         <Box p="md">
+        <div className="my-3">
+        <Breadcrumbst ArrBreadcrumb={arr} />
+      </div>
           <Grid>
             <Grid.Col span={4}>
               <Card
@@ -67,7 +77,6 @@ export default function SystemPage() {
             <Grid.Col span={6}>
               <DateNow/>
             </Grid.Col>
-          
           </Grid>
        </Box>
         </Box>
