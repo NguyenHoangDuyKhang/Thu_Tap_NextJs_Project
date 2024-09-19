@@ -20,6 +20,7 @@ import { useRouter } from "next/navigation";
 import EditDialog from "./EditDialog";
 import Breadcrumbst from "@/component/Breadcrumbs/Breadcrumbst";
 import Action from "./Action";
+import Info_User from "./InfoUser";
 
 export default function Category_Detail() {
   const router = useRouter();
@@ -81,8 +82,6 @@ export default function Category_Detail() {
     },
   ];
 
-  console.log("Check data", data[0].Group);
-
   const handleEditClick = (group: any) => {
     setSelectedData(group);
     setOpened(true);
@@ -119,14 +118,18 @@ export default function Category_Detail() {
                   transition: "transform 0.2s ease",
                 }}
                 variant="gradient"
-                gradient={{ from: 'rgba(2, 204, 201, 1)', to: 'rgba(227, 20, 203, 1)', deg: 66 }}
+                gradient={{
+                  from: "rgba(2, 204, 201, 1)",
+                  to: "rgba(227, 20, 203, 1)",
+                  deg: 66,
+                }}
                 onMouseEnter={(e) =>
                   (e.currentTarget.style.transform = "scale(1.05)")
                 }
                 onMouseLeave={(e) =>
                   (e.currentTarget.style.transform = "scale(1)")
                 }
-                onClick={() => router.push("/system/category")}
+                onClick={() => router.push("/system/warranty")}
               >
                 Trở lại
               </Button>
@@ -163,10 +166,10 @@ export default function Category_Detail() {
                   <th
                     style={{ padding: "12px", borderRadius: "12px 0 0 12px" }}
                   >
-                    Chi tiết
+                    Chi tiết bảo hành
                   </th>
                   <th>
-                    <Action/>
+                    <Action />
                   </th>
                 </tr>
               </thead>
@@ -180,25 +183,16 @@ export default function Category_Detail() {
               })}
             >
               {/* Người tạo và Khách hàng */}
-              <Grid>
-                <Grid.Col span={3} style={{ padding: 20 }}>
-                  <Text>Người tạo</Text>
-                  <Text>(Nguyễn Văn A)</Text>
-                </Grid.Col>
-                <Grid.Col span={3} style={{ padding: 20 }}>
-                  <Text>Khách hàng</Text>
-                  <Text>(Công ty TNHH ABC)</Text>
-                </Grid.Col>
-              </Grid>
+              <Info_User/>
 
-              {/* Tiêu đề */}
               <Box mt="md" style={{ padding: 10 }}>
-                <Text>Tiêu đề</Text>
-                <Text>(Gói phần mềm quản lý doanh nghiệp)</Text>
+                <Text>Thời gian bảo hành</Text>
+                <Text>Từ ngày A đến ngày B</Text>
               </Box>
 
-              {/* Code vs data */}
               <Box style={{ padding: "20px", backgroundColor: "#f8f9fa" }}>
+                <Text size="lg" mb={6}>Chức năng bảo hành</Text>
+
                 {data.map((item, index) => (
                   <Box
                     key={index}

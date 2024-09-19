@@ -2,12 +2,23 @@
 import { Container, Box } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { NavbarSystem } from "@/component/system/NavSystem/NavSystem";
+import { NavbarClient } from "@/component/client/NavClient/NavClient";
 import { AsideSystem } from "@/component/system/AsideSystem/AsideSystem";
 import Spinner from "@/component/spinner/spinner";
-import { Notifications } from '@mantine/notifications';
-import '@mantine/notifications/styles.css';
+import { Notifications } from "@mantine/notifications";
+import "@mantine/notifications/styles.css";
 function SystemLayout({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
+  const [role, setRole] = useState<number| null>(null);
+
+  useEffect(() => {
+    const usterRole = window.localStorage.getItem("user");
+    console.log(usterRole);
+    if(usterRole){
+      setRole(Number(usterRole))
+    }
+    console.log(role);
+  });
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -18,7 +29,8 @@ function SystemLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div style={{ display: "flex", minHeight: "100vh", position: "relative" }}>
-      <NavbarSystem />
+      {/* <NavbarSystem /> */}
+      {role ===1 ? <NavbarSystem/> : <NavbarClient/>}
       <Notifications />
       <Container
         size="lg"
@@ -52,6 +64,7 @@ function SystemLayout({ children }: { children: React.ReactNode }) {
                 justifyContent: "center",
                 alignItems: "center",
                 zIndex: 1000,
+                height: "100vh",
               }}
             >
               <Spinner />

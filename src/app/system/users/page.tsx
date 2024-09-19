@@ -1,9 +1,8 @@
 "use client";
-import { Button, Card, Group, Table, Space, Box } from "@mantine/core";
+import { Button, Card, Group, Table, Box } from "@mantine/core";
 import {
   IconEdit,
   IconTrash,
-  IconEye,
   IconPlus,
   IconListDetails,
 } from "@tabler/icons-react";
@@ -14,7 +13,7 @@ import Breadcrumbst from "@/component/Breadcrumbs/Breadcrumbst";
 import AddItemDialog from "./Add_dialog";
 import EditItemDialog from "./Edit_dialog";
 
-export default function Category() {
+export default function Profile() {
   const router = useRouter();
   const [activePage, setPage] = useState(1);
   const [dialogOpened, setDialogOpened] = useState(false); // State để điều khiển dialog
@@ -28,41 +27,49 @@ export default function Category() {
 
   const data = [
     {
-      id: 1,
-      name: "Phần mềm quản lý nhân sự",
-      price: "50,000,000 VND",
-      quantity: 1,
-      unit: "Gói",
-      description: "Phần mềm quản lý nhân sự",
+      name: "Ms. Perry Hauck",
+      address: "Saint Helena",
+      phonenumber: "Small",
+      old: "Consultant",
+      role: 67,
+      id: "1",
     },
     {
-      id: 2,
-      name: "Phần mềm quản lý nhân sự",
-      price: "50,000,000 VND",
-      quantity: 1,
-      unit: "Gói",
-      description: "Phần mềm quản lý nhân sự",
+      name: "Steven Lockman",
+      address: "Poland",
+      phonenumber: "Northeast",
+      old: "Director",
+      role: 18,
+      id: "2",
     },
     {
-      id: 3,
-      name: "Phần mềm quản lý nhân sự",
-      price: "50,000,000 VND",
-      quantity: 1,
-      unit: "Gói",
-      description: "Phần mềm quản lý nhân sự",
+      name: "Cristina Zemlak",
+      address: "Namibia",
+      phonenumber: "card",
+      old: "Corporate",
+      role: 8,
+      id: "3",
     },
     {
-      id: 4,
-      name: "Phần mềm quản lý nhân sự",
-      price: "50,000,000 VND",
-      quantity: 1,
-      unit: "Gói",
-      description: "Phần mềm quản lý nhân sự",
+      name: "Miss Jerry Rosenbaum",
+      address: "Cyprus",
+      phonenumber: "Hybrid",
+      old: "Latin",
+      role: 64,
+      id: "4",
+    },
+    {
+      name: "Alfred Renner",
+      address: "Macedonia",
+      phonenumber: "Interactions",
+      old: "Supervisor",
+      role: 34,
+      id: "5",
     },
   ];
   const arr = [
     { title: "Trang chủ", href: "/system" },
-    { title: "Báo giá", href: "/system/quote" },
+    { title: "Người dùng", href: "/system/users" },
   ];
 
   const rows = data.map((item, index) => (
@@ -86,10 +93,11 @@ export default function Category() {
         {index + 1}
       </td>
       <td style={{ padding: "10px" }}>{item.name}</td>
-      <td style={{ padding: "10px" }}>{item.price}</td>
-      <td style={{ padding: "10px" }}>{item.quantity}</td>
-      <td style={{ padding: "10px" }}>{item.unit}</td>
-      <td style={{ padding: "10px" }}>{item.description}</td>
+      <td style={{ padding: "10px" }}>{item.address}</td>
+      <td style={{ padding: "10px" }}>{item.phonenumber}</td>
+      <td style={{ padding: "10px" }}>{item.old}</td>
+      <td style={{ padding: "10px" }}>{item.role}</td>
+
       <td
         style={{
           borderTopRightRadius: "10px",
@@ -108,7 +116,7 @@ export default function Category() {
           <Button
             variant="subtle"
             color="blue"
-            onClick={() => router.push("/system/quote/detail")}
+            onClick={() => router.push("/system/users/detail")}
           >
             <IconListDetails size={20} />
           </Button>
@@ -144,7 +152,11 @@ export default function Category() {
               transition: "transform 0.2s ease",
             }}
             variant="gradient"
-            gradient={{ from: 'rgba(2, 204, 201, 1)', to: 'rgba(227, 20, 203, 1)', deg: 66 }}
+            gradient={{
+              from: "rgba(2, 204, 201, 1)",
+              to: "rgba(227, 20, 203, 1)",
+              deg: 66,
+            }}
             onMouseEnter={(e) =>
               (e.currentTarget.style.transform = "scale(1.05)")
             }
@@ -186,15 +198,11 @@ export default function Category() {
                 #
               </th>
               <th>Tên</th>
-              <th>Giá</th>
-              <th>Số lượng</th>
-              <th>Đơn vị tính</th>
-              <th>Mô tả</th>
-              <th
-                style={{ textAlign: "center", borderRadius: "0 12px 12px 0" }}
-              >
-                Hành động
-              </th>
+              <th>Địa chỉ</th>
+              <th>Số ĐT</th>
+              <th>Tuổi</th>
+              <th>Chức vụ</th>
+              <th style={{ textAlign: "center", borderRadius: "0 12px 12px 0"}}>Hành động</th>
             </tr>
           </thead>
           <tbody

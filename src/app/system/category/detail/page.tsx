@@ -76,13 +76,15 @@ export default function Category_Detail() {
             <Box style={{ flexGrow: 1, textAlign: "right" }}>
               <Button
                 style={{
-                  background: "linear-gradient(135deg, #7b2cbf, #ff6b6b)",
                   color: "white",
                   padding: "10px 20px",
                   borderRadius: "8px",
                   fontWeight: "bold",
                   transition: "transform 0.2s ease",
                 }}
+                variant="gradient"
+                gradient={{ from: 'rgba(2, 204, 201, 1)', to: 'rgba(227, 20, 203, 1)', deg: 66 }}
+
                 onMouseEnter={(e) =>
                   (e.currentTarget.style.transform = "scale(1.05)")
                 }
