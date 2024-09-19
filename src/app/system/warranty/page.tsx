@@ -1,9 +1,8 @@
 "use client";
-import { Button, Card, Group, Table, Space, Box } from "@mantine/core";
+import { Button, Card, Group, Box } from "@mantine/core";
 import {
   IconEdit,
   IconTrash,
-  IconEye,
   IconPlus,
   IconListDetails,
 } from "@tabler/icons-react";
@@ -13,6 +12,7 @@ import { Pagination } from "@mantine/core";
 import Breadcrumbst from "@/component/Breadcrumbs/Breadcrumbst";
 import AddItemDialog from "./Add_dialog";
 import EditItemDialog from "./Edit_dialog";
+import Table_warranty from "./table";
 
 export default function Category() {
   const router = useRouter();
@@ -62,7 +62,7 @@ export default function Category() {
   ];
   const arr = [
     { title: "Trang chủ", href: "/system" },
-    { title: "Báo giá", href: "/system/quote" },
+    { title: "Bảo hành", href: "/system/warranty" },
   ];
 
   const rows = data.map((item, index) => (
@@ -108,7 +108,7 @@ export default function Category() {
           <Button
             variant="subtle"
             color="blue"
-            onClick={() => router.push("/system/quote/detail")}
+            onClick={() => router.push("/system/warranty/detail")}
           >
             <IconListDetails size={20} />
           </Button>
@@ -161,52 +161,7 @@ export default function Category() {
         shadow="md"
         style={{ borderRadius: "12px", overflow: "hidden" }}
       >
-        <Table
-          highlightOnHover
-          verticalSpacing="md"
-          horizontalSpacing="lg"
-          striped
-          style={{
-            borderCollapse: "separate",
-            borderSpacing: "0 10px",
-            fontSize: "16px",
-          }}
-        >
-          <thead
-            style={{
-              backgroundColor: "#7b2cbf",
-              color: "white",
-              textAlign: "left",
-              fontSize: "18px",
-              height: "50px",
-            }}
-          >
-            <tr>
-              <th style={{ padding: "12px", borderRadius: "12px 0 0 12px" }}>
-                #
-              </th>
-              <th>Tên</th>
-              <th>Giá</th>
-              <th>Số lượng</th>
-              <th>Đơn vị tính</th>
-              <th>Mô tả</th>
-              <th
-                style={{ textAlign: "center", borderRadius: "0 12px 12px 0" }}
-              >
-                Hành động
-              </th>
-            </tr>
-          </thead>
-          <tbody
-            style={{
-              backgroundColor: "white",
-              boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
-              borderRadius: "12px",
-            }}
-          >
-            {rows}
-          </tbody>
-        </Table>
+        <Table_warranty data={rows}/>
         <Group
           style={{
             display: "flex",

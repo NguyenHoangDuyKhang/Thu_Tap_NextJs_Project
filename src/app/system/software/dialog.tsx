@@ -29,7 +29,7 @@ const FullScreenOverlay = ({ visible }) => {
         justifyContent: "center",
       }}
     >
-      {visible && <Loader color="teal" size="lg" />} {/* Display spinner */}
+      {visible && <Loader color="teal" size="lg" />}{/* Display spinner  */}
     </Box>,
     document.body
   );

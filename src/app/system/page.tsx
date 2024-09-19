@@ -27,9 +27,9 @@ export default function SystemPage() {
     <>
       <AppShell>
         <Box p="md">
-        <div className="my-3">
-        <Breadcrumbst ArrBreadcrumb={arr} />
-      </div>
+          <div className="my-3">
+            <Breadcrumbst ArrBreadcrumb={arr} />
+          </div>
           <Grid>
             <Grid.Col span={4}>
               <Card
@@ -68,17 +68,16 @@ export default function SystemPage() {
               <Charts />
             </Card>
           </Box>
-       <Box>
-
-       <Grid p='md'>
-            <Grid.Col span={6} style={{backgroundColor: '#81ccc7'}}>
-             <Tables/>
-            </Grid.Col>
-            <Grid.Col span={6}>
-              <DateNow/>
-            </Grid.Col>
-          </Grid>
-       </Box>
+          <Box>
+            <Grid p="md">
+              <Grid.Col span={6} style={{ backgroundColor: "#81ccc7" }}>
+                <Tables />
+              </Grid.Col>
+              <Grid.Col span={6}>
+                <DateNow />
+              </Grid.Col>
+            </Grid>
+          </Box>
         </Box>
       </AppShell>
     </>

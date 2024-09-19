@@ -6,7 +6,7 @@ import { MantineLogo } from "@mantinex/mantine-logo";
 import { Popover, Button, Text, NavLink, Stack } from "@mantine/core";
 import { IconHome, IconSettings, IconUser, IconTools, IconAdjustmentsAlt ,IconApiApp , IconNotes, IconReportMoney   } from "@tabler/icons-react";
 
-export function NavbarSystem() {
+export function NavbarClient() {
   const router = useRouter();
   const [activeItem, setActiveItem] = useState<number | null>(null);
   const [openedPopover, setOpenedPopover] = useState<number | null>(null);
@@ -14,10 +14,10 @@ export function NavbarSystem() {
   const navItems = [
     {
       id: 1,
-      label: "Home",
+      label: "Trang chủ",
       icon: IconHome,
       subMenu: [
-        { id: "1", label: "Home", router: "/system" , icon: IconHome },
+        { id: "1", label: "Home", router: "/client" , icon: IconHome },
       ],
     },
     {
@@ -29,16 +29,17 @@ export function NavbarSystem() {
         { id: "2", label: "Software", router: "/system/software",  icon: IconApiApp},
         { id: "3", label: "Quote", router: "/system/quote",  icon: IconNotes  },
         { id: "4", label: "Warranty", router: "/system/warranty",  icon: IconReportMoney   },
-        { id: "5", label: "users", router: "/system/users", icon: IconUser},
+
       ],
     },
     {
       id: 3,
-      label: "Profile",
-      icon: IconUser,
+      label: "Settings",
+      icon: IconSettings,
       router: "/system/products",
       subMenu: [
-        { id: "1", label: "Profile", router: "/system/profile", icon: IconUser},
+        { id: "profile-1", label: "View Profile", router: "/system/products"},
+        { id: "profile-2", label: "Edit Profile", router: "/system/products"},
       ],
     },
   ];
