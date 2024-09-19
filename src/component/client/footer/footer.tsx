@@ -3,31 +3,33 @@ import { Text, Container, ActionIcon, Group, rem } from '@mantine/core';
 import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
 import { MantineLogo } from '@mantinex/mantine-logo';
 import classes from './Footer.module.css';
+import Image from 'next/image';
+import LogoCusc from '../../../../public/CUSCLogoSeries.png'
 
 const data = [
   {
-    title: 'About',
+    title: 'ĐƠN VỊ VẬN HÀNH',
     links: [
-      { label: 'Features', link: '#' },
-      { label: 'Pricing', link: '#' },
-      { label: 'Support', link: '#' },
-      { label: 'Forums', link: '#' },
+      { label: 'Điện thoại: 02923 000 000', link: '#' },
+      { label: 'Fax: 02923 000 000', link: '#' },
+      { label: 'Email: cusu@cusu.vn', link: '#' },
+      { label: '56 Lê Duận - Phường 3- Tỉnh/Thành phố', link: '#' },
     ],
   },
   {
-    title: 'Project',
+    title: 'DỊCH VỤ',
     links: [
-      { label: 'Contribute', link: '#' },
-      { label: 'Media assets', link: '#' },
-      { label: 'Changelog', link: '#' },
-      { label: 'Releases', link: '#' },
+      { label: 'Xây dựng nội dung và quản lý chất lượng', link: '#' },
+      { label: "Công bố các quyết định hệ thống quản lý chất lượng", link: '#' },
+      { label: 'Tra cứu thủ tục', link: '#' },
+      { label: 'Đường dây nóng hỗ trợ ISO điện tử', link: '#' },
     ],
   },
   {
-    title: 'Community',
+    title: 'TRANG LIÊN KẾT',
     links: [
-      { label: 'Join Discord', link: '#' },
-      { label: 'Follow on Twitter', link: '#' },
+      { label: 'Một cửa điện tử', link: '#' },
+      { label: 'Quản lý văn bản', link: '#' },
       { label: 'Email newsletter', link: '#' },
       { label: 'GitHub discussions', link: '#' },
     ],
@@ -60,16 +62,21 @@ export default function FooterLinks() {
     <footer className={classes.footer}>
       <Container className={classes.inner}>
         <div className={classes.logo}>
-          <MantineLogo size={30} />
+          <Image src={LogoCusc} width={100} alt={'CUSC'} />
           <Text size="xs" c="dimmed" className={classes.description}>
-            Build fully functional accessible web applications faster than ever
+          Trung tâm công nghệ phần mềm 
+          đại học cần thơ 
           </Text>
         </div>
-        <div className={classes.groups}>{groups}</div>
+        <div className={classes.groups}>
+          <div className='flex justify-center items-end'>
+          {groups}
+          </div>
+        </div>
       </Container>
       <Container className={classes.afterFooter}>
         <Text c="dimmed" size="sm">
-          © 2020 mantine.dev. All rights reserved.
+          © 2024 ThuctapsinhCT.
         </Text>
 
         <Group gap={0} className={classes.social} justify="flex-end" wrap="nowrap">

@@ -89,10 +89,14 @@ export default function DanhSachBaoGia() {
 
   const form = useForm({
     mode: "uncontrolled",
-    initialValues: {
-      name: "",
-    },
+    // initialValues: {
+    //   name: "",
+    // },
   });
+  const handleSubmit = (values: typeof form.values) => {
+    console.log(values);
+    form.reset();
+};
   const rows = elements.map((element, index) => (
     <Table.Tr key={element.name}>
       <Table.Td className="text-center">{index + 1}</Table.Td>
@@ -122,12 +126,13 @@ export default function DanhSachBaoGia() {
         <Title order={3}>Danh sách báo giá</Title>
       </div>
       {/* form */}
+      <form onSubmit={form.onSubmit(handleSubmit)}>
       <div className="flex bg-[#eceef0] p-4 rounded mb-3 md:flex-nowrap flex-wrap">
         <TextInput
           label="Nội dung báo giá hoặc khách hàng"
           placeholder="Nhập nội dung báo giá hoặc khách hàng"
-          key={form.key("name")}
-          {...form.getInputProps("name")}
+          key={form.key("noidungbaogia")}
+          {...form.getInputProps("noidungbaogia")}
           style={{ width: rem(400) }}
           className="mr-4"
         />
@@ -135,39 +140,38 @@ export default function DanhSachBaoGia() {
           label="Gói sản phẩm"
           placeholder="Pick value"
           data={["React", "Angular", "Vue", "Svelte"]}
+          key={form.key("goisanpham")}
+          {...form.getInputProps("goisanpham")}
           style={{ width: rem(200) }}
           className="mr-4"
         />
         <DatePickerInput
           label="Ngày báo giá"
           placeholder="Pick date"
-          value={valueDate}
-          onChange={setValueDate}
+          key={form.key("ngaybaogia")}
+          {...form.getInputProps("ngaybaogia")}
           style={{ width: rem(200) }}
           className="mr-4"
         />
         <Group justify="center" className="mt-6">
           <Button
-            onClick={() =>
-              form.setValues({
-                // name: randomId(),
-              })
-            }
+            type="submit"
           >
             Tìm Kiếm
           </Button>
         </Group>
       </div>
+        </form>
       {/* list */}
       <div className="mb-5">
         <Table striped highlightOnHover withTableBorder withColumnBorders>
-          <Table.Thead className="bg-[#339af0] text-white">
+          <Table.Thead className="bg-[#339af0] text-white ">
             <Table.Tr>
-              <Table.Th className="text-center">STT</Table.Th>
-              <Table.Th className="text-center">Ngày báo giá</Table.Th>
-              <Table.Th className="text-center">Báo giá</Table.Th>
-              <Table.Th className="text-center">Lịch sử</Table.Th>
-              <Table.Th className="text-center"> Xuất</Table.Th>
+              <Table.Th  style={{textAlign: 'center'}}>STT</Table.Th>
+              <Table.Th  style={{textAlign: 'center'}}>Ngày báo giá</Table.Th>
+              <Table.Th  style={{textAlign: 'center'}}>Báo giá</Table.Th>
+              <Table.Th  style={{textAlign: 'center'}}>Lịch sử</Table.Th>
+              <Table.Th  style={{textAlign: 'center'}}> Xuất</Table.Th>
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>{rows}</Table.Tbody>

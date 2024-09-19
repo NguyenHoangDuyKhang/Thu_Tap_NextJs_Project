@@ -5,71 +5,97 @@ import {
     TextInput,
     Modal,
     Select,
+    Text,
 } from "@mantine/core";
 import { isEmail, isNotEmpty, matches, useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
 import { IconPlus } from "@tabler/icons-react";
-const elementsChuyenVien = [
-    {
-        fullname: "Kim Thanh Loi",
-        title: "MR",
-        phone: "0955454544",
-        email: "kimloi@gmail.com",
-    },
-    {
-        fullname: "Nguyen Doan Van",
-        title: "MS",
-        phone: "0955454544",
-        email: "doanquang@gmail.com",
-    },
-    {
-        fullname: "Ngo hoang duy",
-        title: "MR",
-        phone: "0955454544",
-        email: "ngoduy@gmail.com",
-    },
-];
+import { modals } from "@mantine/modals";
+import { notifications } from "@mantine/notifications";
+import { useState } from "react";
+
 function DanhSachChuyenVien() {
     const [opened, { open, close }] = useDisclosure(false);
-
+    const [listData, setListData] = useState<string | any>([]);
     const form = useForm({
         validateInputOnBlur: true,
         mode: "uncontrolled",
         initialValues: {
-            hoten: "",
+            ten: "",
             email: "",
-            danhxung: "",
-            sdt: "",
+            danhXungTen: "",
+            soDienThoai: "",
         },
         validate: {
-            hoten: isNotEmpty("Họ và tên không được để trống"),
-            danhxung: isNotEmpty("Danh xưng không được để trống"),
-            sdt: (value) => {
+            ten: isNotEmpty("Họ và tên không được để trống"),
+            danhXungTen: isNotEmpty("Danh xưng không được để trống"),
+            soDienThoai: (value) => {
                 if (!value) {
-                  return "Số điện thoại không được để trống"; 
+                    return "Số điện thoại không được để trống";
                 }
                 if (!/(84|0[3|5|7|8|9])+([0-9]{8})\b/g.test(value)) {
-                  return "Số điện thoại không hợp lệ"; 
+                    return "Số điện thoại không hợp lệ";
                 }
-                return null;  
-              },
-            email: isEmail("Email không hợp lệ")
+                return null;
+            },
+            email: isEmail("Email không hợp lệ"),
         },
     });
+    const openDeleteModal = (id : number | string) =>  {        
+     return   modals.openConfirmModal({
+            title: "Xóa dữ liệu",
+            centered: true,
+            children: (
+                <Text size="sm">
+                    Bạn có chắc chắn muốn xóa hồ sơ của mình không? Hành động
+                    này có tính hủy hoại và bạn sẽ phải liên hệ với bộ phận hỗ
+                    trợ để khôi phục dữ liệu của mình..
+                </Text>
+            ),
+            labels: { confirm: "Xóa", cancel: "Hủy" },
+            confirmProps: { color: "red" },
+            onCancel: () => console.log("Cancel"),
+            onConfirm: async () => {
+                notifications.show({
+                    color: "red",
+                    title: "THÔNG BÁO",
+                    message: "Dữ liệu đã xóa thành công",
+                });
+                await removeElementById(id);
+            },
+        });
+    }
+      
+    const removeElementById = async (id : string | number) => {     
+        const updatedElements = await listData.filter(
+            (element: any | string) => element.id !== id
+        );
+        setListData(updatedElements);
+        
+    };
+    const handleRemove = (id: string | number) => {
+        openDeleteModal(id);
+    };
     const submitAddNoidung = (values: typeof form.values) => {
-        console.log(values);
+        values.id = listData.length + 1;
+        setListData((prevArray: any) => [...prevArray, values]);
         form.reset();
     };
-    const rows4 = elementsChuyenVien.map((element, index: number) => (
-        <Table.Tr key={index}>
+    const rows4 = listData.map((element: string | any, index: number) => (
+        <Table.Tr key={element.id}>
             <Table.Td className="text-center">{index + 1}</Table.Td>
-            <Table.Td>{element.fullname}</Table.Td>
-            <Table.Td>{element.title}</Table.Td>
-            <Table.Td>{element.phone}</Table.Td>
+            <Table.Td>{element.ten}</Table.Td>
+            <Table.Td>{element.danhXungTen}</Table.Td>
+            <Table.Td>{element.soDienThoai}</Table.Td>
             <Table.Td>{element.email}</Table.Td>
-
             <Table.Td>
-                <div className="flex items-center justify-center">
+                <div
+                    className="flex items-center justify-center"
+                    onClick={() => {
+                        handleRemove(element.id);
+                       
+                    }}
+                >
                     <CloseButton size="lg" />
                 </div>
             </Table.Td>
@@ -109,16 +135,16 @@ function DanhSachChuyenVien() {
                             withAsterisk
                             label="Họ và tên"
                             placeholder="Nhập họ và tệ"
-                            key={form.key("hoten")}
-                            {...form.getInputProps("hoten")}
+                            key={form.key("ten")}
+                            {...form.getInputProps("ten")}
                             className=" mt-2"
                         />{" "}
                         <TextInput
                             withAsterisk
                             label="Số điện thoại"
                             placeholder="Nhập số điện thoại"
-                            key={form.key("sdt")}
-                            {...form.getInputProps("sdt")}
+                            key={form.key("soDienThoai")}
+                            {...form.getInputProps("soDienThoai")}
                             className=" mt-2"
                         />
                         <TextInput
@@ -134,8 +160,8 @@ function DanhSachChuyenVien() {
                             placeholder="Chọn ..."
                             withAsterisk
                             data={["Cơ bản", "Tiêu chuẩn"]}
-                            key={form.key("danhxung")}
-                            {...form.getInputProps("danhxung")}
+                            key={form.key("danhXungTen")}
+                            {...form.getInputProps("danhXungTen")}
                             style={{ width: "100%" }}
                             className="mr-4 mt-2"
                         />
